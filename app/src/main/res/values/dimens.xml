@@ -1,0 +1,61 @@
+<resources>
+
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="app_bar_height">@dimen/size_11_and_quarter_x</dimen>
+    <dimen name="nav_header_vertical_spacing">@dimen/size_1_x</dimen>
+    <dimen name="activity_horizontal_margin">@dimen/size_1_x</dimen>
+    <dimen name="activity_vertical_margin">@dimen/size_1_x</dimen>
+    <dimen name="text_margin">@dimen/size_1_x</dimen>
+    <dimen name="fab_margin">@dimen/size_1_x</dimen>
+
+    <!-- View Abstract Dimens -->
+    <dimen name="tv_schedule_channel_width">81dp</dimen>
+    <dimen name="tv_schedule_item_height">38.5dp</dimen>
+    <dimen name="tab_height">@dimen/size_2_and_three_quarter_x</dimen>
+    <dimen name="size_thin_line">1dp</dimen>
+    <dimen name="size_half_of_thin_line">0.5dp</dimen>
+    <dimen name="size_hairline">0.1dp</dimen>
+
+    <!-- View Concrete Dimens -->
+    <dimen name="size_16_x">256dp</dimen>
+    <dimen name="size_15_x">240dp</dimen>
+    <dimen name="size_12_x">192dp</dimen>
+    <dimen name="size_11_and_quarter_x">180dp</dimen>
+    <dimen name="size_11_x">176dp</dimen>
+    <dimen name="size_10_x">160dp</dimen>
+    <dimen name="size_9_x">144dp</dimen>
+    <dimen name="size_8_x">128dp</dimen>
+    <dimen name="size_7_x">112dp</dimen>
+    <dimen name="size_6_x">96dp</dimen>
+    <dimen name="size_5_x">80dp</dimen>
+    <dimen name="size_4_and_half_x">72dp</dimen>
+    <dimen name="size_4_x">64dp</dimen>
+    <dimen name="size_3_and_half_x">52dp</dimen>
+    <dimen name="size_3_x">48dp</dimen>
+    <dimen name="size_2_and_three_quarter_x">44dp</dimen>
+    <dimen name="size_2_and_half_x">40dp</dimen>
+    <dimen name="size_2_and_third_x">36.8dp</dimen>
+    <dimen name="size_2_x">32dp</dimen>
+    <dimen name="size_1_and_three_quarter_x">28dp</dimen>
+    <dimen name="size_1_and_half_x">24dp</dimen>
+    <dimen name="size_1_and_quarter_x">20dp</dimen>
+    <dimen name="size_1_x">16dp</dimen>
+    <dimen name="size_0_and_three_quarter_x">12dp</dimen>
+    <dimen name="size_0_and_half_x">8dp</dimen>
+    <dimen name="size_0_and_quarter_x">4dp</dimen>
+    <dimen name="size_0_and_eighth_x">2dp</dimen>
+    <dimen name="size_0_and_sixsteen_x">1dp</dimen>
+
+    <!-- Text Dimens -->
+    <dimen name="text_52">52sp</dimen>
+    <dimen name="text_30">30sp</dimen>
+    <dimen name="text_26">26sp</dimen>
+    <dimen name="text_23">23sp</dimen>
+    <dimen name="text_20">20sp</dimen>
+    <dimen name="text_18">18sp</dimen>
+    <dimen name="text_16">16sp</dimen>
+    <dimen name="text_14">14sp</dimen>
+    <dimen name="text_12">12sp</dimen>
+    <dimen name="text_10">10sp</dimen>
+
+</resources>
