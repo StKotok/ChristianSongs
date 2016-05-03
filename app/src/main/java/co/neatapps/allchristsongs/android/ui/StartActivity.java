@@ -57,7 +57,17 @@ public class StartActivity extends Activity implements TextWatcher, View.OnClick
         }
     }
 
-//--- Utils ---------------------------------------------------
+    @Override
+    public void onBackPressed() {
+        int length = autoCompleteTextView.getText().length();
+        if (length > 0) {
+            autoCompleteTextView.setText("");
+            return;
+        }
+        super.onBackPressed();
+    }
+
+    //--- Utils ---------------------------------------------------
 
     private void hideSystemBar(Window window) {
         requestWindowFeature(Window.FEATURE_NO_TITLE);
