@@ -5,20 +5,15 @@
 
     <AutoCompleteTextView
         android:id="@+id/autoCompleteTextView"
-        style="@android:style/TextAppearance.DeviceDefault.Large"
-        android:layout_width="wrap_content"
-        android:layout_height="@dimen/size_2_and_half_x"
-        android:layout_alignParentLeft="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/size_1_x"
-        android:layout_toLeftOf="@+id/hint"
-        android:layout_toStartOf="@+id/hint"
         android:background="@color/transparent_white"
         android:hint="@string/search_by_title"
-        android:maxLines="1"
+        android:paddingBottom="@dimen/size_0_and_half_x"
         android:paddingLeft="@dimen/size_0_and_half_x"
-        android:paddingRight="@dimen/size_0_and_half_x"
-        android:singleLine="true"
-        android:text="@string/charNumber"
+        android:paddingRight="@dimen/size_2_and_half_x"
+        android:paddingTop="@dimen/size_0_and_half_x"
         android:textColor="@color/white"
         android:textSize="@dimen/text_18" />
 
@@ -26,10 +21,8 @@
         android:id="@+id/hint"
         android:layout_width="@dimen/size_2_and_half_x"
         android:layout_height="@dimen/size_2_and_half_x"
-        android:layout_alignBottom="@+id/autoCompleteTextView"
         android:layout_alignParentRight="true"
         android:layout_alignTop="@+id/autoCompleteTextView"
-        android:background="@color/transparent_white"
         android:onClick="onClick"
         android:padding="@dimen/size_0_and_half_x"
         android:src="@drawable/info" />
