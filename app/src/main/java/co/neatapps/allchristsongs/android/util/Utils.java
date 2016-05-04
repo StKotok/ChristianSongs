@@ -5,6 +5,7 @@ import android.support.annotation.NonNull;
 import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.SpannableStringBuilder;
+import android.text.format.Time;
 import android.text.style.StyleSpan;
 
 import java.util.ArrayList;
@@ -63,6 +64,14 @@ public class Utils {
 
     public static boolean isNaturalNumber(CharSequence input) {
         return input != null && PATTERN_NUMBER.matcher(input).matches();
+    }
+
+    public static long normalizeDate(long startDate) {
+        // normalize the start date to the beginning of the (UTC) day
+        Time time = new Time();
+        time.set(startDate);
+        int julianDay = Time.getJulianDay(startDate, time.gmtoff);
+        return time.setJulianDay(julianDay);
     }
 
 }

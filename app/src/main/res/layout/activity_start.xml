@@ -9,7 +9,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/size_1_x"
         android:background="@color/transparent_white"
-        android:hint="@string/search_by_title"
+        android:hint="@string/search_by_"
         android:paddingBottom="@dimen/size_0_and_half_x"
         android:paddingLeft="@dimen/size_0_and_half_x"
         android:paddingRight="@dimen/size_2_and_half_x"
