@@ -11,8 +11,10 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
+import android.widget.Toast;
 
 import co.neatapps.allchristsongs.allchristiansongs.R;
+import co.neatapps.allchristsongs.android.util.Utils;
 
 public class StartActivity extends Activity implements TextWatcher, View.OnClickListener {
     AutoCompleteTextView autoCompleteTextView;
@@ -46,14 +48,28 @@ public class StartActivity extends Activity implements TextWatcher, View.OnClick
 
     @Override
     public void onTextChanged(CharSequence s, int start, int before, int count) {
+        if (!Utils.isNaturalNumber(s)) {
+            showSongsByString(s.toString());
+        } else {
+            showSongsByNumder(s.toString());
+        }
+    }
+
+    private void showSongsByString(String s) {
         // todo
+        Toast.makeText(this, "Строка " + s, Toast.LENGTH_SHORT).show();
+    }
+
+    private void showSongsByNumder(String number) {
+        // todo
+        Toast.makeText(this, "#" + number, Toast.LENGTH_SHORT).show();
     }
 
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.hint:
-                // todo
+                Toast.makeText(this, R.string.search_hint, Toast.LENGTH_LONG).show();
         }
     }
 

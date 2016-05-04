@@ -10,11 +10,12 @@ import android.text.style.StyleSpan;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.regex.Pattern;
 
-/**
- * Created by stkotok on 02.05.2016.
- */
 public class Utils {
+
+    public static final Pattern PATTERN_NUMBER = Pattern.compile("^\\d+$");
+
     public static Spannable getItalicText(String text) {
         Spannable italic = new SpannableString(text);
         italic.setSpan(new StyleSpan(Typeface.ITALIC), 0, text.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
@@ -59,4 +60,9 @@ public class Utils {
         }
         return ssb;
     }
+
+    public static boolean isNaturalNumber(CharSequence input) {
+        return input != null && PATTERN_NUMBER.matcher(input).matches();
+    }
+
 }
