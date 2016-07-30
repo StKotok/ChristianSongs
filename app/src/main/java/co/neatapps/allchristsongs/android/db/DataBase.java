@@ -31,6 +31,10 @@ public class DataBase {
         return mDB.query(TABLE_NAME, null, null, null, null, null, null);
     }
 
+//    public Cursor getSongsByName(Lis) {
+//        return mDB.query(TABLE_NAME, null, null, null, null, null, null);
+//    }
+
     public void addRec(String txt, int img) {
         ContentValues cv = new ContentValues();
         cv.put(COLUMN_LANGUAGE, txt);
