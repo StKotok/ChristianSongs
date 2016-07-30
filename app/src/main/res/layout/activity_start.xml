@@ -3,11 +3,90 @@
     android:layout_height="match_parent"
     android:background="@color/light_blue_700">
 
-    <AutoCompleteTextView
+    <LinearLayout
+        android:id="@+id/search_in_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/size_1_x"
+        android:layout_marginRight="@dimen/size_1_x"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:paddingTop="@dimen/size_0_and_half_x"
+            android:text="@string/search_over"
+            android:textColor="@color/transparent_white_strong"
+            android:textSize="@dimen/text_14"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/search_in_info"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:paddingTop="@dimen/size_0_and_half_x"
+            android:textColor="@color/transparent_white_strong"
+            android:textSize="@dimen/text_14" />
+
+        <ImageView
+            android:id="@+id/search_in_chevron"
+            android:layout_width="@dimen/size_1_without_eight_x"
+            android:layout_height="@dimen/size_0_and_half_x"
+            android:layout_gravity="bottom"
+            android:layout_marginBottom="@dimen/size_0_and_quarter_x"
+            android:background="@drawable/selector_ic_up_down" />
+
+    </LinearLayout>
+
+    <org.apmem.tools.layouts.FlowLayout
+        android:id="@+id/search_in_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/search_in_layout"
+        android:orientation="horizontal"
+        android:visibility="gone">
+
+        <TextView
+            android:id="@+id/chk_revival"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/size_0_and_quarter_x"
+            android:background="@drawable/selector_highlight"
+            android:paddingBottom="@dimen/size_0_and_quarter_x"
+            android:paddingLeft="@dimen/size_0_and_half_x"
+            android:paddingRight="@dimen/size_0_and_half_x"
+            android:paddingTop="@dimen/size_0_and_quarter_x"
+            android:text="@string/digest_revival_songs"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="@dimen/text_14"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/chk_maykop"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/size_0_and_quarter_x"
+            android:background="@drawable/selector_highlight"
+            android:paddingBottom="@dimen/size_0_and_quarter_x"
+            android:paddingLeft="@dimen/size_0_and_half_x"
+            android:paddingRight="@dimen/size_0_and_half_x"
+            android:paddingTop="@dimen/size_0_and_quarter_x"
+            android:text="@string/digest_maykop"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="@dimen/text_14"
+            android:textStyle="bold" />
+
+    </org.apmem.tools.layouts.FlowLayout>
+
+    <MultiAutoCompleteTextView
         android:id="@+id/autoCompleteTextView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/size_1_x"
+        android:layout_below="@+id/search_in_container"
+        android:layout_marginTop="@dimen/size_0_and_half_x"
         android:background="@color/transparent_white"
         android:hint="@string/search_by_"
         android:paddingBottom="@dimen/size_0_and_half_x"

@@ -14,7 +14,11 @@ public class Digest {
 
     public enum DigestType {
         revivalSong,
-        maykop
+        maykop;
+
+        public static int length() {
+            return DigestType.values().length;
+        }
     }
 
 }

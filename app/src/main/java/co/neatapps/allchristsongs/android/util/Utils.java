@@ -1,5 +1,6 @@
 package co.neatapps.allchristsongs.android.util;
 
+import android.content.SharedPreferences;
 import android.graphics.Typeface;
 import android.support.annotation.NonNull;
 import android.text.Spannable;
@@ -72,6 +73,12 @@ public class Utils {
         time.set(startDate);
         int julianDay = Time.getJulianDay(startDate, time.gmtoff);
         return time.setJulianDay(julianDay);
+    }
+
+    public static void saveBoolean(boolean b, String key, SharedPreferences sharedPref) {
+        SharedPreferences.Editor editor = sharedPref.edit();
+        editor.putBoolean(key, b);
+        editor.apply();
     }
 
 }

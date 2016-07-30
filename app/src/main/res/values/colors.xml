@@ -5,8 +5,16 @@
     <color name="colorAccent">@color/white</color>
 
     <color name="white">#fff</color>
-    <color name="transparent_white">#66ffffff</color>
-    <color name="transparent_black">#66000000</color>
+    <color name="transparent_white_strong">#ccffffff</color>
+    <color name="transparent_white">#99ffffff</color>
+    <color name="transparent_white_light">#66ffffff</color>
+
+    <color name="black">#000</color>
+    <color name="transparent_black_strong">#cc000000</color>
+    <color name="transparent_black">#99000000</color>
+    <color name="transparent_black_light">#66000000</color>
+
+    <color name="transparent">#00000000</color>
     <color name="light_blue_400">#29b6f6</color>
     <color name="light_blue_700">#0288d1</color>
     <color name="light_blue_900">#01579b</color>

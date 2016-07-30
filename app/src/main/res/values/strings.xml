@@ -1,6 +1,16 @@
 <resources>
+
     <string name="app_name">Песни христиан</string>
+    <string name="digest_revival_songs">Песнь Возрождения</string>
+    <string name="digest_maykop">Майкоп</string>
+
+    <string name="search_over">Искать в сборниках:</string>
+    <string name="selected_none">(ни в одном)</string>
+    <string name="selected_several">(в некоторых)</string>
+    <string name="selected_all">(во всех)</string>
+    <string name="select_at_least_one">Должен быть выбран как минимум один сборник</string>
     <string name="search_hint">Вводите по несколько букв начала каждого слова названия песни, разделяя их пробелами</string>
     <string name="search_by_"><font color="#77ffffff">Поиск по номеру или названию</font></string>
     <string name="hint_for_typing">Не нужно вводить целые слова. Достаточно вводить по несколько букв начала слова</string>
+
 </resources>

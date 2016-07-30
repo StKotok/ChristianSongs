@@ -40,8 +40,10 @@
     <dimen name="size_1_and_half_x">24dp</dimen>
     <dimen name="size_1_and_quarter_x">20dp</dimen>
     <dimen name="size_1_x">16dp</dimen>
+    <dimen name="size_1_without_eight_x">14dp</dimen>
     <dimen name="size_0_and_three_quarter_x">12dp</dimen>
     <dimen name="size_0_and_half_x">8dp</dimen>
+    <dimen name="size_0_and_third_x">6dp</dimen>
     <dimen name="size_0_and_quarter_x">4dp</dimen>
     <dimen name="size_0_and_eighth_x">2dp</dimen>
     <dimen name="size_0_and_sixsteen_x">1dp</dimen>
@@ -55,6 +57,7 @@
     <dimen name="text_18">18sp</dimen>
     <dimen name="text_16">16sp</dimen>
     <dimen name="text_14">14sp</dimen>
+    <dimen name="text_13">13.5sp</dimen>
     <dimen name="text_12">12sp</dimen>
     <dimen name="text_10">10sp</dimen>
 

@@ -4,10 +4,12 @@ import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,15 +25,24 @@ import java.util.ArrayList;
 import java.util.List;
 
 import co.neatapps.allchristsongs.allchristiansongs.R;
+import co.neatapps.allchristsongs.android.model.Digest;
 import co.neatapps.allchristsongs.android.model.Song;
+import co.neatapps.allchristsongs.android.util.Constants;
 import co.neatapps.allchristsongs.android.util.Utils;
 
 public class StartActivity extends Activity implements TextWatcher, View.OnClickListener {
 
-    private AutoCompleteTextView autoCompleteTextView;
-    private List<Song> songs = new ArrayList<>();
+    private View vSearchInLayout;
+    private View vSearchInContainer;
+    private TextView vSearchInInfo;
+    private TextView vSearchInRevival;
+    private TextView vSearchInMaykop;
+    private AutoCompleteTextView vAutoCompleteTextView;
     private ListView listView;
+
+    private List<Song> songs = new ArrayList<>();
     private SongsAdapter songsAdapter;
+    private SharedPreferences sharedPref;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,12 +50,34 @@ public class StartActivity extends Activity implements TextWatcher, View.OnClick
         setContentView(R.layout.activity_start);
         hideActionBar();
 
+        sharedPref = getPreferences(Context.MODE_PRIVATE);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
-        autoCompleteTextView = (AutoCompleteTextView) findViewById(R.id.autoCompleteTextView);
-        autoCompleteTextView.addTextChangedListener(this);
+        initViews();
+        setListeners();
 
         listView = (ListView) findViewById(R.id.list);
+    }
+
+    private void initViews() {
+        vSearchInLayout = findViewById(R.id.search_in_layout);
+        vSearchInInfo = (TextView) findViewById(R.id.search_in_info);
+        vSearchInContainer = findViewById(R.id.search_in_container);
+        vSearchInRevival = (TextView) findViewById(R.id.chk_revival);
+        vSearchInMaykop = (TextView) findViewById(R.id.chk_maykop);
+        vAutoCompleteTextView = (AutoCompleteTextView) findViewById(R.id.autoCompleteTextView);
+
+        vSearchInRevival.setSelected(sharedPref.getBoolean(Constants.REVIVAL_SELECTED, true));
+        vSearchInMaykop.setSelected(sharedPref.getBoolean(Constants.MAYKOP_SELECTED, true));
+
+        refreshSearchInInfoText();
+    }
+
+    private void setListeners() {
+        vSearchInLayout.setOnClickListener(this);
+        vSearchInRevival.setOnClickListener(this);
+        vSearchInMaykop.setOnClickListener(this);
+        vAutoCompleteTextView.addTextChangedListener(this);
     }
 
     @Override
@@ -85,16 +118,71 @@ public class StartActivity extends Activity implements TextWatcher, View.OnClick
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
+            case R.id.search_in_layout:
+                if (vSearchInContainer.getVisibility() != View.VISIBLE) {
+                    showSearchInLayout();
+                } else {
+                    vSearchInLayout.setSelected(false);
+                    vSearchInContainer.setVisibility(View.GONE);
+                }
+                break;
+
+            case R.id.chk_revival:
+                processSelecting(vSearchInRevival, Constants.REVIVAL_SELECTED);
+                break;
+
+            case R.id.chk_maykop:
+                processSelecting(vSearchInMaykop, Constants.MAYKOP_SELECTED);
+                break;
+
             case R.id.hint:
                 Toast.makeText(this, R.string.search_hint, Toast.LENGTH_LONG).show();
+                break;
         }
+    }
+
+    private void processSelecting(TextView digestView, String digestPrefsKey) {
+
+        digestView.setSelected(!digestView.isSelected());
+
+        if (countSelectedDigests() == 0) {
+            showSearchInLayout();
+            Toast.makeText(this, R.string.select_at_least_one, Toast.LENGTH_LONG).show();
+            digestView.setSelected(true);
+        }
+
+        Utils.saveBoolean(digestView.isSelected(), digestPrefsKey, sharedPref);
+
+        refreshSearchInInfoText();
+
+        // todo: Refresh search results
+
+        Log.d("StartActivity", "\t\t" + sharedPref.getBoolean(Constants.REVIVAL_SELECTED, false) + "\t" + sharedPref.getBoolean(Constants.MAYKOP_SELECTED, false));
+    }
+
+    private void refreshSearchInInfoText() {
+        int count = countSelectedDigests();
+        String msg;
+        if (count == Digest.DigestType.length()) {
+            msg = getString(R.string.selected_all);
+        } else if (count == 0) {
+            msg = getString(R.string.selected_none);
+        } else {
+            msg = getString(R.string.selected_several);
+        }
+        vSearchInInfo.setText(msg);
+    }
+
+    private void showSearchInLayout() {
+        vSearchInLayout.setSelected(true);
+        vSearchInContainer.setVisibility(View.VISIBLE);
     }
 
     @Override
     public void onBackPressed() {
-        int length = autoCompleteTextView.getText().length();
+        int length = vAutoCompleteTextView.getText().length();
         if (length > 0) {
-            autoCompleteTextView.setText("");
+            vAutoCompleteTextView.setText("");
             return;
         }
         super.onBackPressed();
@@ -128,6 +216,13 @@ public class StartActivity extends Activity implements TextWatcher, View.OnClick
         if (actionBar != null) {
             actionBar.hide();
         }
+    }
+
+    private int countSelectedDigests() {
+        int count = 0;
+        if (vSearchInRevival.isSelected()) ++count;
+        if (vSearchInMaykop.isSelected()) ++count;
+        return count;
     }
 
     public class SongsAdapter extends BaseAdapter {
