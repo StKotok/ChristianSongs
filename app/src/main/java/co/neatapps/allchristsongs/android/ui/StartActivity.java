@@ -37,6 +37,7 @@ public class StartActivity extends Activity implements TextWatcher, View.OnClick
     private TextView vSearchInInfo;
     private TextView vSearchInRevival;
     private TextView vSearchInMaykop;
+    private View vSpaceOnTop;
     private MultiAutoCompleteTextView vAutoCompleteTextView; // SpaceTokenizer + http://developer.alexanderklimov.ru/android/views/autocompletetextview.php#multiautocompletetextview
     private ListView listView;
 
@@ -65,6 +66,7 @@ public class StartActivity extends Activity implements TextWatcher, View.OnClick
         vSearchInContainer = findViewById(R.id.search_in_container);
         vSearchInRevival = (TextView) findViewById(R.id.chk_revival);
         vSearchInMaykop = (TextView) findViewById(R.id.chk_maykop);
+        vSpaceOnTop = findViewById(R.id.space_on_autocomplete_top);
         vAutoCompleteTextView = (MultiAutoCompleteTextView) findViewById(R.id.autoCompleteTextView);
 
         vSearchInRevival.setSelected(sharedPref.getBoolean(Constants.REVIVAL_SELECTED, true));
@@ -77,6 +79,7 @@ public class StartActivity extends Activity implements TextWatcher, View.OnClick
         vSearchInLayout.setOnClickListener(this);
         vSearchInRevival.setOnClickListener(this);
         vSearchInMaykop.setOnClickListener(this);
+        vSpaceOnTop.setOnClickListener(this);
         vAutoCompleteTextView.addTextChangedListener(this);
     }
 
@@ -119,6 +122,7 @@ public class StartActivity extends Activity implements TextWatcher, View.OnClick
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.search_in_layout:
+            case R.id.space_on_autocomplete_top:
                 if (vSearchInContainer.getVisibility() != View.VISIBLE) {
                     showSearchInLayout();
                 } else {

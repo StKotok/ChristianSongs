@@ -7,9 +7,9 @@
         android:id="@+id/search_in_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/size_1_x"
-        android:layout_marginRight="@dimen/size_1_x"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:paddingLeft="@dimen/size_1_x"
+        android:paddingRight="@dimen/size_1_x">
 
         <TextView
             android:layout_width="wrap_content"
@@ -81,12 +81,17 @@
 
     </org.apmem.tools.layouts.FlowLayout>
 
+    <android.support.v4.widget.Space
+        android:id="@+id/space_on_autocomplete_top"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/size_0_and_half_x"
+        android:layout_below="@+id/search_in_container" />
+
     <MultiAutoCompleteTextView
         android:id="@+id/autoCompleteTextView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/search_in_container"
-        android:layout_marginTop="@dimen/size_0_and_half_x"
+        android:layout_below="@+id/space_on_autocomplete_top"
         android:background="@color/transparent_white"
         android:hint="@string/search_by_"
         android:paddingBottom="@dimen/size_0_and_half_x"
