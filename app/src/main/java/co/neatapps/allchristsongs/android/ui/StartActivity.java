@@ -37,7 +37,7 @@ public class StartActivity extends Activity implements TextWatcher, View.OnClick
     private TextView vSearchInInfo;
     private TextView vSearchInRevival;
     private TextView vSearchInMaykop;
-    private MultiAutoCompleteTextView vAutoCompleteTextView;
+    private MultiAutoCompleteTextView vAutoCompleteTextView; // SpaceTokenizer + http://developer.alexanderklimov.ru/android/views/autocompletetextview.php#multiautocompletetextview
     private ListView listView;
 
     private List<Song> songs = new ArrayList<>();
