@@ -15,9 +15,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
-import android.widget.AutoCompleteTextView;
 import android.widget.BaseAdapter;
 import android.widget.ListView;
+import android.widget.MultiAutoCompleteTextView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -37,7 +37,7 @@ public class StartActivity extends Activity implements TextWatcher, View.OnClick
     private TextView vSearchInInfo;
     private TextView vSearchInRevival;
     private TextView vSearchInMaykop;
-    private AutoCompleteTextView vAutoCompleteTextView;
+    private MultiAutoCompleteTextView vAutoCompleteTextView;
     private ListView listView;
 
     private List<Song> songs = new ArrayList<>();
@@ -65,7 +65,7 @@ public class StartActivity extends Activity implements TextWatcher, View.OnClick
         vSearchInContainer = findViewById(R.id.search_in_container);
         vSearchInRevival = (TextView) findViewById(R.id.chk_revival);
         vSearchInMaykop = (TextView) findViewById(R.id.chk_maykop);
-        vAutoCompleteTextView = (AutoCompleteTextView) findViewById(R.id.autoCompleteTextView);
+        vAutoCompleteTextView = (MultiAutoCompleteTextView) findViewById(R.id.autoCompleteTextView);
 
         vSearchInRevival.setSelected(sharedPref.getBoolean(Constants.REVIVAL_SELECTED, true));
         vSearchInMaykop.setSelected(sharedPref.getBoolean(Constants.MAYKOP_SELECTED, true));
