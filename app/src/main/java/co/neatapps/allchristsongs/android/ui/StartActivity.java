@@ -161,7 +161,7 @@ public class StartActivity extends Activity implements TextWatcher, View.OnClick
 
         // todo: Refresh search results
 
-        Log.d("StartActivity", "\t\t" + sharedPref.getBoolean(Constants.REVIVAL_SELECTED, false) + "\t" + sharedPref.getBoolean(Constants.MAYKOP_SELECTED, false));
+        Log.d(this.getClass().getSimpleName(), "\t\t" + sharedPref.getBoolean(Constants.REVIVAL_SELECTED, false) + "\t" + sharedPref.getBoolean(Constants.MAYKOP_SELECTED, false));
     }
 
     private void refreshSearchInInfoText() {

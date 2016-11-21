@@ -51,33 +51,13 @@
 
         <TextView
             android:id="@+id/chk_revival"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/size_0_and_quarter_x"
-            android:background="@drawable/selector_highlight"
-            android:paddingBottom="@dimen/size_0_and_quarter_x"
-            android:paddingLeft="@dimen/size_0_and_half_x"
-            android:paddingRight="@dimen/size_0_and_half_x"
-            android:paddingTop="@dimen/size_0_and_quarter_x"
-            android:text="@string/digest_revival_songs"
-            android:textColor="@color/colorPrimaryDark"
-            android:textSize="@dimen/text_14"
-            android:textStyle="bold" />
+            style="@style/DigestTitleBtn"
+            android:text="@string/digest_revival_songs" />
 
         <TextView
             android:id="@+id/chk_maykop"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/size_0_and_quarter_x"
-            android:background="@drawable/selector_highlight"
-            android:paddingBottom="@dimen/size_0_and_quarter_x"
-            android:paddingLeft="@dimen/size_0_and_half_x"
-            android:paddingRight="@dimen/size_0_and_half_x"
-            android:paddingTop="@dimen/size_0_and_quarter_x"
-            android:text="@string/digest_maykop"
-            android:textColor="@color/colorPrimaryDark"
-            android:textSize="@dimen/text_14"
-            android:textStyle="bold" />
+            style="@style/DigestTitleBtn"
+            android:text="@string/digest_maykop" />
 
     </org.apmem.tools.layouts.FlowLayout>
 
