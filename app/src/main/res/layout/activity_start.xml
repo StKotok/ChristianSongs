@@ -8,17 +8,17 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:paddingLeft="@dimen/size_1_x"
-        android:paddingRight="@dimen/size_1_x">
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center_vertical"
-            android:paddingTop="@dimen/size_0_and_half_x"
+            android:paddingTop="8dp"
             android:text="@string/search_over"
             android:textColor="@color/transparent_white_strong"
-            android:textSize="@dimen/text_14"
+            android:textSize="@dimen/normal_text_size"
             android:textStyle="bold" />
 
         <TextView
@@ -27,16 +27,16 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center"
-            android:paddingTop="@dimen/size_0_and_half_x"
+            android:paddingTop="8dp"
             android:textColor="@color/transparent_white_strong"
-            android:textSize="@dimen/text_14" />
+            android:textSize="@dimen/normal_text_size" />
 
         <ImageView
             android:id="@+id/search_in_chevron"
-            android:layout_width="@dimen/size_1_without_eight_x"
-            android:layout_height="@dimen/size_0_and_half_x"
+            android:layout_width="14dp"
+            android:layout_height="8dp"
             android:layout_gravity="bottom"
-            android:layout_marginBottom="@dimen/size_0_and_quarter_x"
+            android:layout_marginBottom="4dp"
             android:background="@drawable/selector_ic_up_down" />
 
     </LinearLayout>
@@ -64,7 +64,7 @@
     <android.support.v4.widget.Space
         android:id="@+id/space_on_autocomplete_top"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/size_0_and_half_x"
+        android:layout_height="8dp"
         android:layout_below="@+id/search_in_container" />
 
     <MultiAutoCompleteTextView
@@ -74,21 +74,21 @@
         android:layout_below="@+id/space_on_autocomplete_top"
         android:background="@color/transparent_white"
         android:hint="@string/search_by_"
-        android:paddingBottom="@dimen/size_0_and_half_x"
-        android:paddingLeft="@dimen/size_0_and_half_x"
-        android:paddingRight="@dimen/size_2_and_half_x"
-        android:paddingTop="@dimen/size_0_and_half_x"
+        android:paddingBottom="8dp"
+        android:paddingLeft="8dp"
+        android:paddingRight="40dp"
+        android:paddingTop="8dp"
         android:textColor="@color/white"
-        android:textSize="@dimen/text_18" />
+        android:textSize="18sp" />
 
     <ImageView
         android:id="@+id/hint"
-        android:layout_width="@dimen/size_2_and_half_x"
-        android:layout_height="@dimen/size_2_and_half_x"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
         android:layout_alignParentRight="true"
         android:layout_alignTop="@+id/autoCompleteTextView"
         android:onClick="onClick"
-        android:padding="@dimen/size_0_and_half_x"
+        android:padding="8dp"
         android:src="@drawable/info" />
 
     <TextView
@@ -100,7 +100,7 @@
         android:keepScreenOn="true"
         android:text="@string/app_name"
         android:textColor="@color/light_blue_400"
-        android:textSize="@dimen/text_52"
+        android:textSize="52sp"
         android:textStyle="bold" />
 
     <ListView

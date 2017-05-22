@@ -4,16 +4,16 @@
     android:layout_height="wrap_content"
     android:background="@color/transparent_white"
     android:orientation="vertical"
-    android:paddingBottom="@dimen/size_0_and_quarter_x"
-    android:paddingLeft="@dimen/size_0_and_half_x"
-    android:paddingRight="@dimen/size_0_and_half_x"
-    android:paddingTop="@dimen/size_0_and_quarter_x">
+    android:paddingBottom="4dp"
+    android:paddingLeft="8dp"
+    android:paddingRight="8dp"
+    android:paddingTop="4dp">
 
     <TextView
         android:id="@+id/item_songs_list_header"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/size_0_and_eighth_x"
+        android:layout_marginBottom="2dp"
         android:textColor="@color/colorPrimary"
         android:textStyle="bold" />
 
