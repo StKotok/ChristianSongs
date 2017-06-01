@@ -41,25 +41,11 @@
 
     </LinearLayout>
 
-    <org.apmem.tools.layouts.FlowLayout
+    <com.nex3z.flowlayout.FlowLayout
         android:id="@+id/search_in_container"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        style="@style/FlowLayout"
         android:layout_below="@id/search_in_layout"
-        android:orientation="horizontal"
-        android:visibility="gone">
-
-        <TextView
-            android:id="@+id/chk_revival"
-            style="@style/DigestTitleBtn"
-            android:text="@string/digest_revival_songs" />
-
-        <TextView
-            android:id="@+id/chk_maykop"
-            style="@style/DigestTitleBtn"
-            android:text="@string/digest_maykop" />
-
-    </org.apmem.tools.layouts.FlowLayout>
+        android:visibility="visible" />
 
     <android.support.v4.widget.Space
         android:id="@+id/space_on_autocomplete_top"
@@ -107,6 +93,7 @@
         android:id="@+id/list"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/autoCompleteTextView" />
+        android:layout_below="@+id/autoCompleteTextView"
+        android:layout_marginTop="1dp" />
 
 </RelativeLayout>

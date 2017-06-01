@@ -8,6 +8,12 @@ public class Song {
     private String header;
     private String body;
 
+    public Song(Map<Digest.DigestType, Integer> numbers, String header, String body) {
+        this.numbers = numbers;
+        this.header = header;
+        this.body = body;
+    }
+
     public Map<Digest.DigestType, Integer> getNumbers() {
         return numbers;
     }

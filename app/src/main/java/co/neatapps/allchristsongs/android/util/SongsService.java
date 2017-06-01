@@ -1,16 +1,30 @@
 package co.neatapps.allchristsongs.android.util;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
+import co.neatapps.allchristsongs.android.model.Digest;
 import co.neatapps.allchristsongs.android.model.Song;
 
 public class SongsService {
     private static List<Song> songs;
 
     public static List<Song> getSongs() {
-        // todo
-        return new ArrayList<>();
+
+        // STUB start
+        songs = new ArrayList<>();
+        HashMap<Digest.DigestType, Integer> numbers1 = new HashMap<>();
+        numbers1.put(Digest.DigestType.maykop, 1);
+        numbers1.put(Digest.DigestType.revivalSong, 1);
+        HashMap<Digest.DigestType, Integer> numbers2 = new HashMap<>();
+        numbers2.put(Digest.DigestType.maykop, 312);
+        numbers2.put(Digest.DigestType.revivalSong, 2);
+        songs.add(new Song(numbers1, "Aнгелы в небе", songTextSTUB()));
+        songs.add(new Song(numbers2, "Жизнь посвящаю Тебе", songTextSTUB312()));
+        // STUB end
+
+        return songs;
     }
 
     public static String songTextSTUB() {

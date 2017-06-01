@@ -1,5 +1,6 @@
 package co.neatapps.allchristsongs.android.util;
 
+import android.app.ActionBar;
 import android.content.SharedPreferences;
 import android.graphics.Typeface;
 import android.support.annotation.NonNull;
@@ -79,6 +80,12 @@ public class Utils {
         SharedPreferences.Editor editor = sharedPref.edit();
         editor.putBoolean(key, b);
         editor.apply();
+    }
+
+    public static void hideActionBar(ActionBar actionBar) {
+        if (actionBar != null) {
+            actionBar.hide();
+        }
     }
 
 }
