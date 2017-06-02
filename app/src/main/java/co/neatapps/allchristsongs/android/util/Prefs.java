@@ -13,6 +13,9 @@ public class Prefs {
     public static final ValueWrapper<String> DIGESTS_SELECTED = new ValueWrapper<String>("DIGESTS_SELECTED", "") {
     };
 
+    public static final ValueWrapper<Boolean> DIGESTS_VISIBLE = new ValueWrapper<Boolean>("DIGESTS_VISIBLE", true) {
+    };
+
     public static abstract class ValueWrapper<T> {
         private final T defaultValue;
         private final String name;

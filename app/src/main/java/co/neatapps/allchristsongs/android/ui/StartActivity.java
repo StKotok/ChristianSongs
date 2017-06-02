@@ -6,10 +6,8 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.ListView;
 import android.widget.MultiAutoCompleteTextView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -23,16 +21,10 @@ import co.neatapps.allchristsongs.android.util.Utils;
 
 public class StartActivity extends Activity implements TextWatcher, View.OnClickListener {
 
-    private View vSearchInLayout;
-    private View vSearchInContainer;
-    private TextView vSearchInInfo;
-    private View vSpaceOnTop;
     private MultiAutoCompleteTextView vAutoCompleteTextView; // SpaceTokenizer + http://developer.alexanderklimov.ru/android/views/autocompletetextview.php#multiautocompletetextview
-    private ListView vListView;
 
     private List<Song> songs = new ArrayList<>();
     private SongsAdapter songsAdapter;
-    private DigestsSelector digestsSelector;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,35 +32,19 @@ public class StartActivity extends Activity implements TextWatcher, View.OnClick
         setContentView(R.layout.activity_start);
         Utils.hideActionBar(getActionBar());
 
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+
+        DigestsSelector digestsSelector = new DigestsSelector(StartActivity.this);
+
+        vAutoCompleteTextView = (MultiAutoCompleteTextView) findViewById(R.id.autoCompleteTextView);
+        vAutoCompleteTextView.addTextChangedListener(this);
+
         // STUB start
         songs.addAll(SongsService.getSongs());
         // STUB end
-
-        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-
-        initViews();
-        setListeners();
-
-        ViewGroup vDigests = (ViewGroup) findViewById(R.id.search_in_container);
-        vSearchInInfo = (TextView) findViewById(R.id.search_in_info);
-        digestsSelector = new DigestsSelector(vDigests, vSearchInInfo, getLayoutInflater());
-
-        vListView = (ListView) findViewById(R.id.list);
+        ListView vListView = (ListView) findViewById(R.id.list);
         songsAdapter = new SongsAdapter(this, songs);
         vListView.setAdapter(songsAdapter);
-    }
-
-    private void initViews() {
-        vSearchInLayout = findViewById(R.id.search_in_layout);
-        vSearchInContainer = findViewById(R.id.search_in_container);
-        vSpaceOnTop = findViewById(R.id.space_on_autocomplete_top);
-        vAutoCompleteTextView = (MultiAutoCompleteTextView) findViewById(R.id.autoCompleteTextView);
-    }
-
-    private void setListeners() {
-        vSearchInLayout.setOnClickListener(this);
-        vSpaceOnTop.setOnClickListener(this);
-        vAutoCompleteTextView.addTextChangedListener(this);
     }
 
     @Override
@@ -109,25 +85,10 @@ public class StartActivity extends Activity implements TextWatcher, View.OnClick
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.search_in_layout:
-            case R.id.space_on_autocomplete_top:
-                if (vSearchInContainer.getVisibility() != View.VISIBLE) {
-                    showSearchInLayout();
-                } else {
-                    vSearchInLayout.setSelected(false);
-                    vSearchInContainer.setVisibility(View.GONE);
-                }
-                break;
-
             case R.id.hint:
                 Toast.makeText(this, R.string.search_hint, Toast.LENGTH_LONG).show();
                 break;
         }
-    }
-
-    private void showSearchInLayout() {
-        vSearchInLayout.setSelected(true);
-        vSearchInContainer.setVisibility(View.VISIBLE);
     }
 
     @Override

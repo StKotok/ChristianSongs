@@ -1,6 +1,6 @@
 package co.neatapps.allchristsongs.android.util;
 
-import android.view.LayoutInflater;
+import android.app.Activity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
@@ -15,60 +15,85 @@ public class DigestsSelector {
 
     private static final String DIVIDER = ";";
 
-    private final ViewGroup viewGroup;
+    private final Activity activity;
+
+    private final View vSearchInLayout;
     private final TextView vSearchInInfo;
-    private final Type type;
-    private final View.OnClickListener clickItemListener = new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-            switch (type) {
-                case MULTI_SELECT:
-                    v.setSelected(!v.isSelected());
-                    break;
+    private final ViewGroup vSearchInContainer;
+    private final View vSpaceOnTop;
 
-                case SINGLE_SELECT:
-                    if (v.isSelected()) {
-                        v.setSelected(false);
-                    } else {
-                        String selectedText = ((TextView) v).getText().toString();
-                        for (int i = 0; i < viewGroup.getChildCount(); i++) {
-                            TextView textView = (TextView) viewGroup.getChildAt(i);
-                            textView.setSelected(selectedText.equals(textView.getText()));
-                        }
-                    }
-                    break;
-            }
-            saveSelected();
-            refreshSearchInInfoText();
-        }
-    };
+    public DigestsSelector(Activity activity) {
+        this.activity = activity;
 
-    public DigestsSelector(ViewGroup viewGroup, TextView vSearchInInfo, LayoutInflater inflater) {
-        this(viewGroup, vSearchInInfo, Type.MULTI_SELECT, inflater);
+        vSearchInLayout = activity.findViewById(R.id.search_in_layout);
+        vSearchInInfo = (TextView) activity.findViewById(R.id.search_in_info);
+        vSearchInContainer = (ViewGroup) activity.findViewById(R.id.search_in_container);
+        vSpaceOnTop = activity.findViewById(R.id.space_on_autocomplete_top);
+
+        initDigestLayoutVisibility();
+
+        initDigestsLayout();
     }
 
-    public DigestsSelector(ViewGroup viewGroup, TextView vSearchInInfo, Type type, LayoutInflater inflater) {
-        this.viewGroup = viewGroup;
-        this.vSearchInInfo = vSearchInInfo;
-        this.type = type;
+    public List<String> getSelected() {
+        ArrayList<String> selectedItems = new ArrayList<>();
+        for (int i = 0; i < vSearchInContainer.getChildCount(); i++) {
+            TextView textView = (TextView) vSearchInContainer.getChildAt(i);
+            if (textView.isSelected()) {
+                selectedItems.add(textView.getText().toString());
+            }
+        }
+        return selectedItems;
+    }
 
+    private void initDigestLayoutVisibility() {
+        View.OnClickListener layoutsClickListener = new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                setDigestsLayoutVisible(vSearchInContainer.getVisibility() != View.VISIBLE);
+            }
+        };
+
+        vSearchInLayout.setOnClickListener(layoutsClickListener);
+        vSpaceOnTop.setOnClickListener(layoutsClickListener);
+
+        setDigestsLayoutVisible(Prefs.DIGESTS_VISIBLE.getValue(activity));
+    }
+
+    private void setDigestsLayoutVisible(boolean digestsVisible) {
+        vSearchInLayout.setSelected(digestsVisible);
+        vSearchInContainer.setVisibility(digestsVisible ? View.VISIBLE : View.GONE);
+        Prefs.DIGESTS_VISIBLE.setValue(activity, digestsVisible);
+    }
+
+    private void initDigestsLayout() {
         List<String> digests = new ArrayList<>();
         for (int i = 0; i < Digest.DigestType.length(); i++) {
             digests.add(Digest.DigestType.values()[i].toString());
         }
 
+        View.OnClickListener digestsClickItemListener = new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                v.setSelected(!v.isSelected());
+                saveSelectedDigests();
+                refreshSearchInInfoText();
+            }
+        };
+
         for (String s : digests) {
-            TextView textView = (TextView) inflater.inflate(R.layout.selectable_text_view, null);
-            textView.setOnClickListener(clickItemListener);
+            TextView textView = (TextView) activity.getLayoutInflater().inflate(R.layout.selectable_text_view, null);
+            textView.setOnClickListener(digestsClickItemListener);
             textView.setText(s);
-            viewGroup.addView(textView);
+            vSearchInContainer.addView(textView);
         }
 
-        selectFromPrefs(viewGroup);
+        selectDigestsAccordingPrefs(vSearchInContainer);
+
         refreshSearchInInfoText();
     }
 
-    private void selectFromPrefs(ViewGroup viewGroup) {
+    private void selectDigestsAccordingPrefs(ViewGroup viewGroup) {
         String savedSelected = Prefs.DIGESTS_SELECTED.getValue(viewGroup.getContext());
         for (int i = 0; i < viewGroup.getChildCount(); i++) {
             TextView textView = (TextView) viewGroup.getChildAt(i);
@@ -76,7 +101,7 @@ public class DigestsSelector {
         }
     }
 
-    private void saveSelected() {
+    private void saveSelectedDigests() {
         StringBuilder sb = new StringBuilder();
         List<String> selected = getSelected();
         for (int i = 0; i < selected.size(); i++) {
@@ -85,19 +110,7 @@ public class DigestsSelector {
                 sb.append(DIVIDER);
             }
         }
-        Prefs.DIGESTS_SELECTED.setValue(viewGroup.getContext(), sb.toString());
-    }
-
-
-    public List<String> getSelected() {
-        ArrayList<String> selectedItems = new ArrayList<>();
-        for (int i = 0; i < viewGroup.getChildCount(); i++) {
-            TextView textView = (TextView) viewGroup.getChildAt(i);
-            if (textView.isSelected()) {
-                selectedItems.add(textView.getText().toString());
-            }
-        }
-        return selectedItems;
+        Prefs.DIGESTS_SELECTED.setValue(activity, sb.toString());
     }
 
     private void refreshSearchInInfoText() {
@@ -111,11 +124,6 @@ public class DigestsSelector {
             msg = vSearchInInfo.getContext().getString(R.string.selected_several);
         }
         vSearchInInfo.setText(msg);
-    }
-
-    public enum Type {
-        MULTI_SELECT,
-        SINGLE_SELECT
     }
 
 }

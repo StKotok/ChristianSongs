@@ -3,61 +3,15 @@
     android:layout_height="match_parent"
     android:background="@color/light_blue_700">
 
-    <LinearLayout
-        android:id="@+id/search_in_layout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:paddingLeft="16dp"
-        android:paddingRight="16dp">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="center_vertical"
-            android:paddingTop="8dp"
-            android:text="@string/search_over"
-            android:textColor="@color/transparent_white_strong"
-            android:textSize="@dimen/normal_text_size"
-            android:textStyle="bold" />
-
-        <TextView
-            android:id="@+id/search_in_info"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:paddingTop="8dp"
-            android:textColor="@color/transparent_white_strong"
-            android:textSize="@dimen/normal_text_size" />
-
-        <ImageView
-            android:id="@+id/search_in_chevron"
-            android:layout_width="14dp"
-            android:layout_height="8dp"
-            android:layout_gravity="bottom"
-            android:layout_marginBottom="4dp"
-            android:background="@drawable/selector_ic_up_down" />
-
-    </LinearLayout>
-
-    <com.nex3z.flowlayout.FlowLayout
-        android:id="@+id/search_in_container"
-        style="@style/FlowLayout"
-        android:layout_below="@id/search_in_layout"
-        android:visibility="visible" />
-
-    <android.support.v4.widget.Space
-        android:id="@+id/space_on_autocomplete_top"
-        android:layout_width="match_parent"
-        android:layout_height="8dp"
-        android:layout_below="@+id/search_in_container" />
+    <include
+        android:id="@+id/v_digests_selector"
+        layout="@layout/v_digests_selector" />
 
     <MultiAutoCompleteTextView
         android:id="@+id/autoCompleteTextView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/space_on_autocomplete_top"
+        android:layout_below="@+id/v_digests_selector"
         android:background="@color/transparent_white"
         android:hint="@string/search_by_"
         android:paddingBottom="8dp"
