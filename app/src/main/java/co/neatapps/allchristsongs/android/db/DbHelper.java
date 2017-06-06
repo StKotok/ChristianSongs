@@ -6,7 +6,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 public class DbHelper extends SQLiteOpenHelper {
 
-    public static final String DATABASE_NAME = "db.db";
+    private static final String DATABASE_NAME = "db.db";
     private static final int DATABASE_VERSION = 1;
 
     public DbHelper(Context context) {
@@ -17,15 +17,15 @@ public class DbHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
         final String SQL_CREATE_SONGS_TABLE = "CREATE TABLE " + DbContract.SongEntry.TABLE_NAME + " (" +
                 DbContract.SongEntry._ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
-                DbContract.SongEntry.COLUMN_LANGUAGE + " TEXT NOT NULL, " +
+                DbContract.SongEntry.COLUMN_NUMBER + " TEXT NOT NULL, " +
                 DbContract.SongEntry.COLUMN_HEADER + " TEXT NOT NULL, " +
                 DbContract.SongEntry.COLUMN_BODY + " TEXT NOT NULL, " +
+                DbContract.SongEntry.COLUMN_TONE + " TEXT NOT NULL, " +
+                DbContract.SongEntry.COLUMN_INFO + " TEXT NOT NULL " +
                 ");";
 
         sqLiteDatabase.execSQL(SQL_CREATE_SONGS_TABLE);
     }
-
-
 
     @Override
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int oldVersion, int newVersion) {

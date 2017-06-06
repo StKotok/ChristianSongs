@@ -14,12 +14,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 import co.neatapps.allchristsongs.allchristiansongs.R;
+import co.neatapps.allchristsongs.android.db.DataBase;
+import co.neatapps.allchristsongs.android.db.DbContract;
 import co.neatapps.allchristsongs.android.model.Song;
 import co.neatapps.allchristsongs.android.util.DigestsSelector;
-import co.neatapps.allchristsongs.android.util.SongsService;
+import co.neatapps.allchristsongs.android.util.SongsParser;
 import co.neatapps.allchristsongs.android.util.Utils;
 
 public class StartActivity extends Activity implements TextWatcher, View.OnClickListener {
+
+    public static final String CURRENT_DB_PATH = "//data//" + "PackageName" + "//databases//" + "DatabaseName";
+    public static final String BACKUP_FOLDER_DATABASE_NAME = "/BackupFolder/DatabaseName";
 
     private MultiAutoCompleteTextView vAutoCompleteTextView; // SpaceTokenizer + http://developer.alexanderklimov.ru/android/views/autocompletetextview.php#multiautocompletetextview
 
@@ -39,9 +44,12 @@ public class StartActivity extends Activity implements TextWatcher, View.OnClick
         vAutoCompleteTextView = (MultiAutoCompleteTextView) findViewById(R.id.autoCompleteTextView);
         vAutoCompleteTextView.addTextChangedListener(this);
 
-        // STUB start
-        songs.addAll(SongsService.getSongs());
-        // STUB end
+        deleteDatabase(DbContract.SongEntry.TABLE_NAME);
+        DataBase db = new DataBase(this);
+        db.addSongs(SongsParser.parse(this));
+
+        songs.addAll(db.getAllSongs());
+
         ListView vListView = (ListView) findViewById(R.id.list);
         songsAdapter = new SongsAdapter(this, songs);
         vListView.setAdapter(songsAdapter);

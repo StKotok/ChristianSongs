@@ -53,14 +53,15 @@ public class SongsAdapter extends BaseAdapter {
 
         ViewHolder holder = (ViewHolder) convertView.getTag();
 
-        holder.header.setText(songs.get(position).getHeader());
+        final Song song = songs.get(position);
+        holder.header.setText(song.getDigests().get(0).getNumber() + " " + song.getHeader());
 //        holder.body.setText(songs.get(position).getBody());
 
         convertView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(context, SongActivity.class);
-                intent.putExtra(SongActivity.SONG, songs.get(position).getBody());
+                intent.putExtra(SongActivity.SONG, song.getBody());
                 context.startActivity(intent);
             }
         });

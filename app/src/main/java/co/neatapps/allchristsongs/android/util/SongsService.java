@@ -20,8 +20,8 @@ public class SongsService {
         HashMap<Digest.DigestType, Integer> numbers2 = new HashMap<>();
         numbers2.put(Digest.DigestType.maykop, 312);
         numbers2.put(Digest.DigestType.revivalSong, 2);
-        songs.add(new Song(numbers1, "Aнгелы в небе", songTextSTUB()));
-        songs.add(new Song(numbers2, "Жизнь посвящаю Тебе", songTextSTUB312()));
+//        songs.add(new Song(numbers1, "Aнгелы в небе", songTextSTUB()));
+//        songs.add(new Song(numbers2, "Жизнь посвящаю Тебе", songTextSTUB312()));
         // STUB end
 
         return songs;
